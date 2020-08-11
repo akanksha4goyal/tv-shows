@@ -1,0 +1,18 @@
+<span>&nbsp;</span>
+<div class="container ">
+    <div class="row">
+        <div *ngFor="let movie of searchList">
+            
+            <div  *ngIf="movie.show.image">
+                <div style="text-align: center;" class="card">
+                <a routerLink="/show-details/{{movie.show.id}}">
+                    <img  class="card-img-top" src={{movie.show.image.medium}} class="img-fluid"
+                        alt="{{movie.show.name}}" width="230" height="300">
+                </a>
+                <h5 class="card-title" style="text-align: center;">{{movie.show.name}}</h5>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
