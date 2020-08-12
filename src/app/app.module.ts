@@ -10,7 +10,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ShowDetailsComponent } from './components/show-details/show-details.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchComponent } from './components/search/search.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SortByRatingPipe } from './pipes/sort-by-rating.pipe'
 import { CommonModule } from '@angular/common';
 
@@ -30,7 +30,8 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     NgxPaginationModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

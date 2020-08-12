@@ -17,11 +17,5 @@ query:''
   }
   change(event){
     this.query=event.target.value;
-    // console.log(this.query)
-    
   }
-  relodPage(){
-    window.location.reload(true);
-  }
-
 }

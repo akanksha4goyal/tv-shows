@@ -1,5 +1,3 @@
-import {Genres} from './genres.model'
-import {Image} from './image.model'
 export class Shows{
     id: number;
     url: string;
@@ -17,7 +15,7 @@ export class Shows{
     network:{};
     webChannel:{};
     externals:{};
-    image:Image[];
+    image:{};
     _links:{};
     summary:string;
     updated:number;

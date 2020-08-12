@@ -15,9 +15,9 @@ export class SortByRatingPipe implements PipeTransform {
       }else{
         return -1;
       }
-      return 0;
+      // return 0;
     })
-    return null;
+    // return null;
   }
 
 }
