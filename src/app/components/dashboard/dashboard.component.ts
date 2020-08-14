@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
     this.config = {
       itemsPerPage: 8,
       currentPage: 1,
-      // totalItems: this.collection.count
     };
   }
 
@@ -26,13 +25,8 @@ export class DashboardComponent implements OnInit {
   showsList(){
       this.showsService.getShows().subscribe(shows=>{
         this.shows=<Shows[]>shows
-        // console.log(shows);
-        
       })  
     }
-  showDetail(movie: Shows):void{
-    this.router.navigate(['show-detail',movie.id])
-  }
   pageChanged(event){
     this.config.currentPage = event;
   }

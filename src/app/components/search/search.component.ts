@@ -9,32 +9,18 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-query:string
-searchList:[]
+  query: string
+  searchList: []
 
-  constructor(private router: Router ,private showsService: ShowsService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private showsService: ShowsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.searchByQuery();
-
     this.route.params.pipe(switchMap((params: Params) => {
       this.query = params['query'];
       return this.showsService.getSearchByQuery(this.query)
     }))
-    .subscribe(shows=>{
-      this.searchList=<any>shows})
-
+      .subscribe(shows => {
+        this.searchList = <any>shows
+      })
   }
-  searchByQuery():void{
-    this.route.params.subscribe(params => {
-      // get the username out of the route params
-      this.query = params['query'];})
-    this.showsService.getSearchByQuery(this.query).subscribe(shows=>{
-      this.searchList=<any>shows
-      // console.log(this.searchList);
-      // console.log(this.query)    
-    })  
-  }
-
-
 }

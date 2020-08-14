@@ -1,24 +1,18 @@
 <span>&nbsp;</span>
 <div style="width: auto;" class="container ">
-    <div  class="row">
-        
-        <div class="card " style="text-align: center;" *ngFor="let movie of (shows | sortByRating) | paginate: config">
-            <!-- <div class="col-lg-12 mx-auto align-items-center"> -->
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-10" *ngFor="let movie of (shows | sortByRating) | paginate: config">
+            <div class="card " style="text-align: center;">
                 <a routerLink="/show-details/{{movie.id}}">
-
-                    <img class="card-img-top" src={{movie.image.medium}} class="img-fluid" alt="{{movie.name}}"
-                        width="230" height="300">
+                    <img class="card-img-top" src={{movie.image.medium}} class="img-fluid" alt="{{movie.name}}">
                 </a>
                 <h5 class="card-title" style="text-align: center;">{{movie.name}}</h5>
-                <span>&nbsp;</span>
-                <span>&nbsp;</span>
-            <!-- </div> -->
+                <p>Rating: {{movie.rating.average}} / 10.0</p>
+            </div>
         </div>
         <div class="row">
-        <span>&nbsp;</span>
-    </div>
-        
-
+            <span>&nbsp;</span>
+        </div>
     </div>
     <div class="row">
         <span>&nbsp;</span>

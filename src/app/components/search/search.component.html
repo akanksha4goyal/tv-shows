@@ -1,18 +1,23 @@
 <span>&nbsp;</span>
 <div class="container ">
-    <div class="row">
-        <div *ngFor="let movie of searchList">
-            
-            <div  *ngIf="movie.show.image">
-                <div style="text-align: center;" class="card">
-                <a routerLink="/show-details/{{movie.show.id}}">
-                    <img  class="card-img-top" src={{movie.show.image.medium}} class="img-fluid"
-                        alt="{{movie.show.name}}" width="230" height="300">
-                </a>
-                <h5 class="card-title" style="text-align: center;">{{movie.show.name}}</h5>
-                <span>&nbsp;</span>
+    <div *ngIf="searchList">
+        <h5 style="color: aliceblue;">Showing similar results for "{{query}}"</h5>
+        &nbsp;
+        <div class="row">
+            <div *ngFor="let movie of searchList">
+                <div *ngIf="movie.show.image">
+                    <div style="text-align: center;" class="card">
+                        <a routerLink="/show-details/{{movie.show.id}}">
+                            <img class="card-img-top" src={{movie.show.image.medium}} class="img-fluid"
+                                alt="{{movie.show.name}}" width="230" height="300">
+                        </a>
+                        <h5 class="card-title" style="text-align: center;">{{movie.show.name}}</h5>
+                        <span>&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="searchList.length===0">
+                <h3 style="color: aliceblue; ">Sorry, No results Found for "{{query}}"</h3>
             </div>
         </div>
-        </div>
     </div>
-</div>

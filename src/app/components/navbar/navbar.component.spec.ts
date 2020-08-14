@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { By } from '@angular/platform-browser';
 import { NavbarComponent } from './navbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ShowsService } from 'src/app/services/shows.service';
@@ -39,6 +39,24 @@ describe('NavbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('searchInput should update value when input changes', async(() => {
+    expect(fixture.debugElement.nativeElement.query).toBeFalsy()
+
+    const el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const testValue = 'some_value';
+
+    el.value = testValue;
+   el.dispatchEvent(new Event('change'));
+    expect(component.query).toEqual(testValue);
+}));
+
+it('should call change() when input changes',()=>{
+  spyOn(component,'change')
+  component.change(event);
+  expect(component.change).toHaveBeenCalled();
+})
+
 });
 
 @Component({

@@ -31,7 +31,9 @@ import { CommonModule } from '@angular/common';
     NgxPaginationModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

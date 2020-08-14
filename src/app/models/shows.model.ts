@@ -7,7 +7,7 @@ export class Shows{
     genres: string[];
     status:string;
     runtime: number;
-    premierd: Date;
+    premierd: string;
     officialSite:string;
     schedule:{};
     rating:{};

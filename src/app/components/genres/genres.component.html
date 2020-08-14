@@ -1,56 +1,21 @@
 <span>&nbsp;</span>
-<div  class="container ">
+<div class="container ">
+    <h5 style="color: aliceblue;"> Showing Results for "{{genre}}" </h5>
+    &nbsp;
     <div class="row ">
-        
-        <div   style="text-align: center;" *ngFor="let movie of (shows | sortByRating)">
-            
+        <div style="text-align: center;" *ngFor="let movie of ((shows) | sortByRating)">
             <div class="mx-auto align-items-center" *ngFor="let i of [0,1,2,3]">
-                <!-- <div class="mx-auto align-items-center"> -->
-                <div  class="card " *ngIf="movie.genres[i]===genre">
-                    <div  class="col-lg-12">
-                        <a  routerLink="/show-details/{{movie.id}}">
-                            <!-- <a (click)="showDetail(movie)"> -->
-                            <img class="card-img-top" src={{movie.image.medium}} class="img-fluid"
-                             alt="{{movie.name}}" width="230" height="300">
+                <div *ngIf="movie.genres[i]===genre">
+                    <div class="card ">
+                        <a routerLink="/show-details/{{movie.id}}">
+                            <img class="card-img-top" src={{movie.image.medium}} class="img-fluid" alt="{{movie.name}}"
+                                width="230" height="300">
                         </a>
-                        <!-- </a> -->
-                        <h6 class="card-title" style="text-align: center; color: rgb(20, 20, 20);">{{movie.name}}</h6>
-                  <span>&nbsp;&nbsp;</span>
+                        <h5 class="card-title" style="text-align: center; color: rgb(20, 20, 20);">{{movie.name}}</h5>
+                        <p>Rating: {{movie.rating.average}} / 10.0</p>
                     </div>
-                    
-                </div>
-            <!-- </div> -->
-        </div>
-
-        </div>
-    </div>
-</div>
-
-
-
-<!--Controls-->
-<!-- <div class="controls-top">
-    <a class="btn-floating" href="#multi-item-example" data-slide="prev">
-        Previous
-      
-    </a>
-
-    <div class="carousel-inner" role="listbox">
-
-        
-        <div class="carousel-item active">
-
-            <div class="col-md-3" style="float:left">
-                <div class="card mb-2">
-
                 </div>
             </div>
         </div>
     </div>
-
-    <a class="btn-floating" href="#multi-item-example" data-slide="next">
-        Next
-      
-    </a>
-</div> -->
-<!--/.Controls-->
+</div>
