@@ -15,9 +15,10 @@ describe('ShowDetailsComponent', () => {
 
 
   beforeEach(async(() => {
-    tvShowServiceMock = jasmine.createSpyObj('ShowsService', ['getShowById','getCast']);
+    tvShowServiceMock = jasmine.createSpyObj('ShowsService', ['getShowById','getCast','getSeasons']);
     tvShowServiceMock.getShowById.and.returnValue(of());
     tvShowServiceMock.getCast.and.returnValue(of([]));
+    tvShowServiceMock.getSeasons.and.returnValue(of([]));
     TestBed.configureTestingModule({
       declarations: [ ShowDetailsComponent , DummyComponent],
       imports: [

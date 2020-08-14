@@ -1,23 +1,30 @@
 <span>&nbsp;</span>
 <div style="width: auto;" class="container ">
-    <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-10" *ngFor="let movie of (shows | sortByRating) | paginate: config">
-            <div class="card " style="text-align: center;">
+    <h4 style="color: aliceblue;"> All Shows: </h4>
+    <div class="scrolling-wrapper">
+        <div class="card " *ngFor="let movie of (shows | sortByRating) ">
+            <a routerLink="/show-details/{{movie.id}}">
+                <img class="card-img-top" src={{movie.image.medium}} class="img-fluid" alt="{{movie.name}}">
+            </a>
+            <h5 class="card-title" style="text-align: center;">{{movie.name}}</h5>
+            <p style="text-align: center;">Rating: {{movie.rating.average}} / 10.0</p>
+        </div>
+    </div>
+    &nbsp;
+
+    <div *ngFor="let genre of genres">
+        <h4 style="color: aliceblue;"> {{genre}} Shows: </h4>
+        &nbsp;
+        <div class="scrolling-wrapper" style="text-align: center;">
+            <div class="card " *ngFor="let movie of ((showByGenre(genre)) | sortByRating)">
                 <a routerLink="/show-details/{{movie.id}}">
-                    <img class="card-img-top" src={{movie.image.medium}} class="img-fluid" alt="{{movie.name}}">
+                    <img class="card-img-top" src={{movie.image.medium}} class="img-fluid" alt="{{movie.name}}"
+                        width="230" height="300">
                 </a>
-                <h5 class="card-title" style="text-align: center;">{{movie.name}}</h5>
+                <h5 class="card-title" style="text-align: center; color: rgb(20, 20, 20);">{{movie.name}}</h5>
                 <p>Rating: {{movie.rating.average}} / 10.0</p>
             </div>
         </div>
-        <div class="row">
-            <span>&nbsp;</span>
-        </div>
     </div>
-    <div class="row">
-        <span>&nbsp;</span>
-    </div>
-    <div style="text-align: center;">
-        <pagination-controls  (pageChange)="pageChanged($event)"></pagination-controls>
-    </div>
+
 </div>

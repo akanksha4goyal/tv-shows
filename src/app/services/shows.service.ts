@@ -27,4 +27,7 @@ export class ShowsService {
     return this.http.get<any>(`${this.shows_URL}/${id}/cast`)
   }
 
+  getSeasons(id:number):Observable<any>{
+    return this.http.get<any>(`${this.shows_URL}/${id}/seasons`)
+  }
 }

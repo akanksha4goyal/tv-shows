@@ -11,9 +11,9 @@ import { Params, ActivatedRoute } from '@angular/router';
   styleUrls: ['./genres.component.css']
 })
 export class GenresComponent implements OnInit {
-  shows: Shows[]
-  show: Shows[]
-  genre: String
+  public shows: Shows[]
+  public show: Shows[]
+  public genre: String
 
   constructor(private router: Router, private showsService: ShowsService, private route: ActivatedRoute) {
   }
@@ -22,7 +22,7 @@ export class GenresComponent implements OnInit {
     this.ShowByGenre();
   }
 
-  ShowByGenre(): void { 
+  public ShowByGenre(): void { 
     this.route.params.subscribe(params => {
       this.genre = params['genre'];
     })

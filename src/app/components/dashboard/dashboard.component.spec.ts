@@ -20,7 +20,6 @@ describe('DashboardComponent', () => {
   let currentPage:''
 
   beforeEach(async(() => {
-
     let tvShowServiceMock = jasmine.createSpyObj('ShowsService', ['getShows']);
     tvShowServiceMock.getShows.and.returnValue(of([]))
 
@@ -54,31 +53,23 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-
-  // it('should fetch all shows',()=>{
-    
-  //   tvShowServiceMock.getShows.and.returnValue(of(dummyShows));
-  //   component.showsList();
-  //   expect(component.shows.length).toBeGreaterThan(0);
-  // })
-
-//   it('searchInput should update value when input changes', async(() => {
-//     // expect(fixture.debugElement.nativeElement.query).toBeFalsy()
-
-//     const el: HTMLInputElement = fixture.debugElement.query(By.css('#pageChange')).nativeElement;
-//     let testValue = '1';
-
-//     el.value = testValue;
-//    el.dispatchEvent(new Event('pageChanged'));
-//     expect(component.config.currentPage).toEqual(testValue);
-// }));
-
-it('should call pageChanged() when page changes',()=>{
-  spyOn(component,'pageChanged')
-  component.pageChanged(event);
-  expect(component.pageChanged).toHaveBeenCalled();
-})
+// it('should call pageChanged() when page changes',()=>{
+//   spyOn(component,'pageChanged')
+//   component.pageChanged(event);
+//   expect(component.pageChanged).toHaveBeenCalled();
+// })
   
+  // it('should fetch shows based on genre',()=>{
+  //   let genre="Thriller";
+
+  //   let showByGenre:Shows[];
+  //   console.log(1)
+  //   tvShowServiceMock.getShows.and.returnValue(of(dummyShows))
+  //   console.log(1)
+  //   component.showsList();
+  //   showByGenre=component.showByGenre(genre);
+  //   expect(showByGenre.length).toBe(1)
+  // })
 
 });
 
@@ -89,7 +80,7 @@ export let dummyShows: Shows[]=[
     name: "Under the Dome",
     type: "Scripted",
     language: "English",
-    genres: [],
+    genres: ['Action','Thriller'],
     status:"Ended",
     runtime: 60,
     premierd: "1/2/2020",
@@ -111,7 +102,7 @@ export let dummyShows: Shows[]=[
     name: "person-of-interest",
     type: "Scripted",
     language: "English",
-    genres: [],
+    genres: ['Comedy','Drama'],
     status:"Ended",
     runtime: 60,
     premierd: "1/2/2020",

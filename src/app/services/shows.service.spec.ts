@@ -48,6 +48,16 @@ describe('ShowsService', () => {
     httpMock.verify();
   });
 
+  it('should fetch the Seasons of Shows', () => { 
+    let id = 1;
+    service.getSeasons(id).subscribe(Shows_Seasons => {
+      expect(Shows_Seasons).toBeDefined();
+    });
+    const req = httpMock.expectOne(`http://api.tvmaze.com/shows/${id}/seasons`);
+    expect(req.request.method).toBe('GET');
+    httpMock.verify();
+  });
+
   it('should fetch the shows from search', () => { 
     let query = 'girls';
     service.getSearchByQuery(query).subscribe(Shows => {

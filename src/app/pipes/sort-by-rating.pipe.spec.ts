@@ -13,4 +13,8 @@ describe('SortByRatingPipe', () => {
     expect(sortPipe.transform(data,"rating.average")).toEqual(result)
   });
 
+  it('should assign value to [] if array is undefined',()=>{
+    let value=null
+    expect(sortPipe.transform(value,"")).toEqual([])
+  })
 });

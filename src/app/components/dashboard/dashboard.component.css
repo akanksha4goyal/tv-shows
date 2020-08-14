@@ -17,3 +17,22 @@ img {
   margin-left: 15px;
 }
 
+
+#pagination{
+ background-color:grey;
+}
+
+.scrolling-wrapper{
+  overflow-x:auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display:flex;
+  flex-wrap: nowrap;
+}
+
+.scrolling-wrapper .card{
+  min-width: 200px;
+  max-width: 200px;
+  margin-right: 2px;
+}
+

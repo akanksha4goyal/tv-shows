@@ -9,8 +9,8 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  query: string
-  searchList: []
+  public query: string
+  public searchList: []
 
   constructor(private router: Router, private showsService: ShowsService, private route: ActivatedRoute) { }
 

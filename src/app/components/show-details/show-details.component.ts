@@ -10,16 +10,17 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./show-details.component.css']
 })
 export class ShowDetailsComponent implements OnInit {
-  show: Shows[]
-  display: boolean
-  cast: []
+  public show: Shows[]
+  public display: boolean
+  public cast: []
+  public seasons:[]
   constructor(private showsService: ShowsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.ShowById();
   }
 
-  ShowById(): void {
+  public ShowById(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.showsService.getShowById(id).subscribe(show => {
       this.show = <Shows[]>show
@@ -27,6 +28,9 @@ export class ShowDetailsComponent implements OnInit {
     })
     this.showsService.getCast(id).subscribe(cast => {
       this.cast = <any>cast
+    })
+    this.showsService.getSeasons(id).subscribe(seasons=>{
+      this.seasons=<any>seasons
     })
   }
 }

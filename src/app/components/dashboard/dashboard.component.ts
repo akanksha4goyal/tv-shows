@@ -8,27 +8,33 @@ import { ShowsService } from 'src/app/services/shows.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  config: any;
-  shows: Shows[]=[];
-  show: Shows[]
+  public shows: Shows[]=[];
+  public show: Shows[];
+  public genres: any[];
   constructor(private router: Router ,private showsService: ShowsService) { 
-    this.config = {
-      itemsPerPage: 8,
-      currentPage: 1,
-    };
+
+    this.genres = ['Comedy', 'Thriller', 'Action', 'Crime', 'Horror', 'Romance', 'Drama', 'Supernatural', 'Fantasy', 'Science-Fiction', 'Mystery', 'Adventure', 'Espionage']
   }
 
   ngOnInit(): void {
     this.showsList();
   }
 
-  showsList(){
+  public showsList(){
       this.showsService.getShows().subscribe(shows=>{
         this.shows=<Shows[]>shows
       })  
     }
-  pageChanged(event){
-    this.config.currentPage = event;
+
+
+    public showByGenre(genre){
+   let showByGenre:Shows[]=[]
+   this.shows.forEach((eachTvShow) => {
+    if (eachTvShow.genres.includes(genre)) {
+      showByGenre.push(eachTvShow)
+    }
+  })
+    return showByGenre;
   }
 
 }
