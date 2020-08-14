@@ -53,23 +53,7 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-// it('should call pageChanged() when page changes',()=>{
-//   spyOn(component,'pageChanged')
-//   component.pageChanged(event);
-//   expect(component.pageChanged).toHaveBeenCalled();
-// })
-  
-  // it('should fetch shows based on genre',()=>{
-  //   let genre="Thriller";
 
-  //   let showByGenre:Shows[];
-  //   console.log(1)
-  //   tvShowServiceMock.getShows.and.returnValue(of(dummyShows))
-  //   console.log(1)
-  //   component.showsList();
-  //   showByGenre=component.showByGenre(genre);
-  //   expect(showByGenre.length).toBe(1)
-  // })
 
 });
 
