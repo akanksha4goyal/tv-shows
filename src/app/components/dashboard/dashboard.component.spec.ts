@@ -17,10 +17,9 @@ describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
   let tvShowServiceMock: any;  
-  let currentPage:''
 
   beforeEach(async(() => {
-    let tvShowServiceMock = jasmine.createSpyObj('ShowsService', ['getShows']);
+    tvShowServiceMock = jasmine.createSpyObj('ShowsService', ['getShows']);
     tvShowServiceMock.getShows.and.returnValue(of([]))
 
 
@@ -53,8 +52,15 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-
-
+  
+  it('should fetch shows based on genre',()=>{
+    let genre="Action";
+    let showByGenre:Shows[];
+    tvShowServiceMock.getShows.and.returnValue(of(dummyShows))
+    component.showsList();
+    showByGenre=component.showByGenre(genre);
+    expect(showByGenre.length).toBe(1)
+  })
 });
 
 export let dummyShows: Shows[]=[
