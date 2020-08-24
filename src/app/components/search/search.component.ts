@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShowsService } from 'src/app/services/shows.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { Shows } from 'src/app/models/shows.model';
 
 @Component({
   selector: 'app-search',
@@ -11,7 +12,7 @@ import { switchMap } from 'rxjs/operators';
 export class SearchComponent implements OnInit {
   public query: string
   public searchList: []
-
+  public searchedShows: Shows[];
   constructor(private router: Router, private showsService: ShowsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -20,7 +21,11 @@ export class SearchComponent implements OnInit {
       return this.showsService.getSearchByQuery(this.query)
     }))
       .subscribe(shows => {
-        this.searchList = <any>shows
+        this.searchedShows = [];
+        shows.forEach(tvShow => {
+          if (tvShow.show.name && tvShow.show.image && tvShow.show.image.medium)
+            this.searchedShows.push(tvShow)
+        })
       })
   }
 }

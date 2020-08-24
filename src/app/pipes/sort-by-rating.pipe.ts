@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SortByRatingPipe implements PipeTransform {
 
   transform(value: Array<any>, args?: any): any {
-    value=value || [] // set records to an empty array if undefined
+    value=value || [] 
     return value.sort((a,b)=>{
       let x=a.rating.average;
       let y=b.rating.average;
@@ -15,9 +15,7 @@ export class SortByRatingPipe implements PipeTransform {
       }else{
         return -1;
       }
-      // return 0;
     })
-    // return null;
   }
 
 }

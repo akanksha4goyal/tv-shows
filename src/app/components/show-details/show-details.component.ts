@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ShowsService } from 'src/app/services/shows.service';
 import { Shows } from 'src/app/models/shows.model';
-import { Params, ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-show-details',
@@ -13,8 +13,8 @@ export class ShowDetailsComponent implements OnInit {
   public show: Shows[]
   public display: boolean
   public cast: []
-  public seasons:[]
-  constructor(private showsService: ShowsService, private route: ActivatedRoute) { }
+  public seasons: []
+  constructor(private showsService: ShowsService, private route: ActivatedRoute, public location: Location) { }
 
   ngOnInit() {
     this.ShowById();
@@ -29,8 +29,13 @@ export class ShowDetailsComponent implements OnInit {
     this.showsService.getCast(id).subscribe(cast => {
       this.cast = <any>cast
     })
-    this.showsService.getSeasons(id).subscribe(seasons=>{
-      this.seasons=<any>seasons
+
+    this.showsService.getSeasons(id).subscribe(seasons => {
+      this.seasons = <any>seasons
     })
+  }
+
+  public goBack() {
+    this.location.back();
   }
 }

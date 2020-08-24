@@ -7,27 +7,27 @@ import {Shows} from '../models/shows.model'
   providedIn: 'root'
 })
 export class ShowsService {
-  shows_URL: string="http://api.tvmaze.com/shows"
-  search_URL:string="http://api.tvmaze.com/search/shows?q="
-  constructor(private http: HttpClient) { }
+  public shows_URL: string="http://api.tvmaze.com/shows"
+  public search_URL:string="http://api.tvmaze.com/search/shows?q="
+  public constructor(private http: HttpClient) { }
 
-  getShows(): Observable<Shows[]>{
-    return this.http.get<Shows[]>(this.shows_URL, {responseType: 'json'});
+  public getShows(): Observable<Shows[]>{
+    return this.http.get<Shows[]>(this.shows_URL)
   }
 
-  getShowById(id:number):Observable<Shows[]>{
-    return this.http.get<Shows[]>(`${this.shows_URL}/${id}`, {responseType: 'json'});
+  public getShowById(id:number):Observable<Shows[]>{
+    return this.http.get<Shows[]>(`${this.shows_URL}/${id}`);
   }
 
-  getSearchByQuery(query:string):Observable<any>{
+  public getSearchByQuery(query:string):Observable<any>{
     return this.http.get<any>(`${this.search_URL}${query}`)
   }
 
-  getCast(id:number):Observable<any>{
+  public getCast(id:number):Observable<any>{
     return this.http.get<any>(`${this.shows_URL}/${id}/cast`)
   }
 
-  getSeasons(id:number):Observable<any>{
+  public getSeasons(id:number):Observable<any>{
     return this.http.get<any>(`${this.shows_URL}/${id}/seasons`)
   }
 }

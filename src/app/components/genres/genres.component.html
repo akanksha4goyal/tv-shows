@@ -1,20 +1,14 @@
-<span>&nbsp;</span>
 <div class="container ">
-    <h5 style="color: aliceblue;"> Showing Results for "{{genre}}" </h5>
-    &nbsp;
-    <div class="row ">
-        <div style="text-align: center;" *ngFor="let movie of ((shows) | sortByRating)">
-            <div class="mx-auto align-items-center" *ngFor="let i of [0,1,2,3]">
-                <div *ngIf="movie.genres[i]===genre">
-                    <div class="card ">
-                        <a routerLink="/show-details/{{movie.id}}">
-                            <img class="card-img-top" src={{movie.image.medium}} class="img-fluid" alt="{{movie.name}}"
-                                width="230" height="300">
-                        </a>
-                        <h5 class="card-title" style="text-align: center; color: rgb(20, 20, 20);">{{movie.name}}</h5>
-                        <p>Rating: {{movie.rating.average}} / 10.0</p>
-                    </div>
-                </div>
+    <h4> Showing Results for "{{genre}}" </h4>
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6 d-flex align-items-stretch"
+            *ngFor="let movie of genreShows | sortByRating">
+            <div class="card">
+                <a routerLink="/show-details/{{movie.id}}">
+                    <img class="card-img-top" src={{movie.image.medium}} alt="{{movie.name}}">
+                </a>
+                <h6 class="card-title" *ngIf="movie?.name">{{movie.name}}</h6>
+                <p *ngIf="movie?.rating?.average">Rating: {{movie.rating.average}} / 10.0</p>
             </div>
         </div>
     </div>

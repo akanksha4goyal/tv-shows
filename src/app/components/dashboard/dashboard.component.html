@@ -1,30 +1,24 @@
-<span>&nbsp;</span>
-<div style="width: auto;" class="container ">
-    <h4 style="color: aliceblue;"> All Shows: </h4>
+<div class="container ">
+    <h4 *ngIf="display"> Top Shows: </h4>
     <div class="scrolling-wrapper">
-        <div class="card " *ngFor="let movie of (shows | sortByRating) ">
+        <div class="card " *ngFor="let movie of (shows | sortByRating)">
             <a routerLink="/show-details/{{movie.id}}">
-                <img class="card-img-top" src={{movie.image.medium}} class="img-fluid" alt="{{movie.name}}">
+                <img class="card-img-top" src={{movie.image.medium}} alt="{{movie.name}}">
             </a>
-            <h5 class="card-title" style="text-align: center;">{{movie.name}}</h5>
-            <p style="text-align: center;">Rating: {{movie.rating.average}} / 10.0</p>
+            <h5 class="card-title" *ngIf="movie?.name">{{movie.name}}</h5>
+            <p *ngIf="movie?.rating?.average">Rating: {{movie.rating.average}} / 10.0</p>
         </div>
     </div>
-    &nbsp;
-
-    <div *ngFor="let genre of genres">
-        <h4 style="color: aliceblue;"> {{genre}} Shows: </h4>
-        &nbsp;
-        <div class="scrolling-wrapper" style="text-align: center;">
+    <div class="genre" *ngFor="let genre of genres">
+        <h4 *ngIf="display"> {{genre}} Shows: </h4>
+        <div class="scrolling-wrapper">
             <div class="card " *ngFor="let movie of ((showByGenre(genre)) | sortByRating)">
                 <a routerLink="/show-details/{{movie.id}}">
-                    <img class="card-img-top" src={{movie.image.medium}} class="img-fluid" alt="{{movie.name}}"
-                        width="230" height="300">
+                    <img class="card-img-top" src={{movie.image.medium}} alt="{{movie.name}}" width="230" height="300">
                 </a>
-                <h5 class="card-title" style="text-align: center; color: rgb(20, 20, 20);">{{movie.name}}</h5>
-                <p>Rating: {{movie.rating.average}} / 10.0</p>
+                <h5 class="card-title" *ngIf="movie?.name">{{movie.name}}</h5>
+                <p *ngIf="movie?.rating?.average">Rating: {{movie.rating.average}} / 10.0</p>
             </div>
         </div>
     </div>
-
 </div>

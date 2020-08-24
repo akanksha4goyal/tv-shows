@@ -1,23 +1,37 @@
-<span>&nbsp;</span>
-<div class="container ">
+<!-- <div class="container ">
     <div *ngIf="searchList">
-        <h5 style="color: aliceblue;">Showing similar results for "{{query}}"</h5>
-        &nbsp;
-        <div class="row">
+        <h4>Showing similar results for "{{query}}"</h4>
+        <div class="row justify-content-center d-flex align-items-stretch">
             <div *ngFor="let movie of searchList">
-                <div *ngIf="movie.show.image">
-                    <div style="text-align: center;" class="card">
+                <div  *ngIf="movie.show.image">
+                    <div class="card">
                         <a routerLink="/show-details/{{movie.show.id}}">
                             <img class="card-img-top" src={{movie.show.image.medium}} class="img-fluid"
                                 alt="{{movie.show.name}}" width="230" height="300">
                         </a>
-                        <h5 class="card-title" style="text-align: center;">{{movie.show.name}}</h5>
+                        <h5 class="card-title" *ngIf="movie.show.name">{{movie.show.name}}</h5>
                         <span>&nbsp;</span>
                     </div>
                 </div>
             </div>
-            <div *ngIf="searchList.length===0">
-                <h3 style="color: aliceblue; ">Sorry, No results Found for "{{query}}"</h3>
+        </div>
+    </div>
+</div> -->
+
+<div class="container ">
+    <div *ngIf="searchedShows">
+        <h4 *ngIf="searchedShows?.length>0">Showing similar results for "{{query}}"</h4>
+        <div class="row d-flex align-items-stretch">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-6 d-flex align-items-stretch"
+                *ngFor="let movie of searchedShows">
+                <div class="card">
+                    <a routerLink="/show-details/{{movie.show.id}}">
+                        <img class="card-img-top" src={{movie.show.image.medium}} alt="{{movie.show.name}}">
+                    </a>
+                    <h5 class="card-title" *ngIf="movie?.show?.name">{{movie.show.name}}</h5>
+                </div>
             </div>
         </div>
     </div>
+    <h4 *ngIf="searchedShows?.length===0">Sorry, No results Founds for "{{query}}"</h4>
+</div>

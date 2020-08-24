@@ -12,8 +12,8 @@ export class NavbarComponent implements OnInit {
     this.genres = ['Comedy', 'Thriller', 'Action', 'Crime', 'Horror', 'Romance', 'Drama', 'Supernatural', 'Fantasy', 'Science-Fiction', 'Mystery', 'Adventure', 'Espionage']
   }
 
-  ngOnInit(): void {}
-  
+  ngOnInit(): void { }
+
   public change(event) {
     this.query = event.target.value;
   }

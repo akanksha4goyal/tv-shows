@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'genres/:genre', component:GenresComponent},
   {path: 'show-details/:id', component:ShowDetailsComponent},
   {path: 'search/:query',component:SearchComponent},
-  {path: '**', component:DashboardComponent}
+  {path: '**',redirectTo:'/dashboard'}
 ];
 
 @NgModule({

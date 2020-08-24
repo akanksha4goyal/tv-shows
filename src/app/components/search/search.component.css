@@ -1,7 +1,7 @@
 
 .card {
     transition: 0.3s;
-    width: 250px;
+    width: auto;
   }
   
   .card:hover {
@@ -13,14 +13,30 @@
   }
   
   
-  .img {
-      border-radius: 5px 5px 0 0;
-      text-align: center;
-      border-left: 5px;
-    }
+  img {
+    border-radius: 5px 5px 0 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    padding:10px 10px;
+  }
 
     .card{
       display: block;
       margin-bottom: 30px;
       margin-left: 15px;
+      text-align: center;
+    }
+
+    .container{
+      margin-top: 20px;
+    }
+
+    .row{
+      margin-top: 15px;
+    }
+
+    h4{
+      color:aliceblue
     }
