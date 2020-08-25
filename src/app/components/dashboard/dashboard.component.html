@@ -9,12 +9,15 @@
             <p *ngIf="movie?.rating?.average">Rating: {{movie.rating.average}} / 10.0</p>
         </div>
     </div>
+    <div *ngIf="errAllShows">
+        <h1>Error Occured while loading data</h1>
+    </div>
     <div class="genre" *ngFor="let genre of genres">
         <h4 *ngIf="display"> {{genre}} Shows: </h4>
         <div class="scrolling-wrapper">
             <div class="card " *ngFor="let movie of ((showByGenre(genre)) | sortByRating)">
                 <a routerLink="/show-details/{{movie.id}}">
-                    <img class="card-img-top" src={{movie.image.medium}} alt="{{movie.name}}" width="230" height="300">
+                    <img class="card-img-top" src={{movie.image.medium}} alt="{{movie.name}}">
                 </a>
                 <h5 class="card-title" *ngIf="movie?.name">{{movie.name}}</h5>
                 <p *ngIf="movie?.rating?.average">Rating: {{movie.rating.average}} / 10.0</p>

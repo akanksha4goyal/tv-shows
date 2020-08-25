@@ -4,11 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ShowsService } from 'src/app/services/shows.service';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { SortByRatingPipe } from 'src/app/pipes/sort-by-rating.pipe'
 import { Component } from '@angular/core';
 import { dummyShows } from '../dashboard/dashboard.component.spec'
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 describe('GenresComponent', () => {
   let component: GenresComponent;
@@ -23,9 +22,12 @@ describe('GenresComponent', () => {
       declarations: [GenresComponent, SortByRatingPipe],
       imports: [
         HttpClientModule,
-        RouterTestingModule,
+        RouterTestingModule.withRoutes(
+          [
+            { path: 'show-details/:id', component: DummyComponent }
+          ]
+        ),
         HttpClientTestingModule,
-        NgxPaginationModule
       ],
       providers: [
         { provide: ShowsService, useValue: tvShowServiceMock }
@@ -52,4 +54,20 @@ describe('GenresComponent', () => {
       expect(genreShows[0].genres.includes(genre)).toBeTruthy();
     })
   })
+
+  it('should return an error if getShows() throws an error', () => {
+    let errorString = 'Error Occured while loadind Data'
+    let genre = 'Action'
+    tvShowServiceMock.getShows.and.returnValue(throwError(errorString));
+    component.ShowByGenre(genre);
+    expect(component.errGenreShows).toBe(errorString);
+  });
+
+  afterAll(() => {
+    fixture.destroy();
+  });
 });
+
+@Component({
+  template: ''
+}) class DummyComponent { }

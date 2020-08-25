@@ -1,15 +1,17 @@
-<div class="container ">
+<div class="container " *ngIf="!errGenreShows">
     <h4> Showing Results for "{{genre}}" </h4>
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-6 col-6 d-flex align-items-stretch"
-            *ngFor="let movie of genreShows | sortByRating">
+            *ngFor="let movie of genreShows">
             <div class="card">
                 <a routerLink="/show-details/{{movie.id}}">
                     <img class="card-img-top" src={{movie.image.medium}} alt="{{movie.name}}">
                 </a>
                 <h6 class="card-title" *ngIf="movie?.name">{{movie.name}}</h6>
-                <p *ngIf="movie?.rating?.average">Rating: {{movie.rating.average}} / 10.0</p>
             </div>
         </div>
     </div>
+</div>
+<div *ngIf="errGenreShows">
+    <h1>Error Occured while loading the Data</h1>
 </div>

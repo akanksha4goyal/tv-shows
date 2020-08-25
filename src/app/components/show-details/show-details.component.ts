@@ -14,6 +14,9 @@ export class ShowDetailsComponent implements OnInit {
   public display: boolean
   public cast: []
   public seasons: []
+  public errShowById: String
+  public errCast: String
+  public errSeasons: String
   constructor(private showsService: ShowsService, private route: ActivatedRoute, public location: Location) { }
 
   ngOnInit() {
@@ -25,13 +28,19 @@ export class ShowDetailsComponent implements OnInit {
     this.showsService.getShowById(id).subscribe(show => {
       this.show = <Shows[]>show
       this.display = true;
+    },error=>{
+      this.errShowById=error;
     })
     this.showsService.getCast(id).subscribe(cast => {
       this.cast = <any>cast
+    },error=>{
+      this.errCast=error;
     })
 
     this.showsService.getSeasons(id).subscribe(seasons => {
       this.seasons = <any>seasons
+    },error=>{
+      this.errSeasons=error;
     })
   }
 

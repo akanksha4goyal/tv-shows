@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Component } from '@angular/core';
 import { SortByRatingPipe } from 'src/app/pipes/sort-by-rating.pipe';
 import { Shows } from 'src/app/models/shows.model';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DashboardComponent', () => {
@@ -54,6 +54,13 @@ describe('DashboardComponent', () => {
     showByGenre = component.showByGenre(genre);
     expect(showByGenre.length).toBe(1)
   })
+
+  it('should return an error if getShows() throws an error', () => {
+    let errorString = 'Error Occured while loadind Data'
+    tvShowServiceMock.getShows.and.returnValue(throwError(errorString));
+    component.showsList();
+    expect(component.errAllShows).toBe(errorString);
+  });
 
   afterAll(() => {
     fixture.destroy();

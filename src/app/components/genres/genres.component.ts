@@ -16,21 +16,10 @@ export class GenresComponent implements OnInit {
   public show: Shows[]
   public genre: string
   public genreShows: Shows[] = [];
+  public errGenreShows: String
 
-  constructor(private router: Router, private showsService: ShowsService, private route: ActivatedRoute) {
+  constructor(private showsService: ShowsService, private route: ActivatedRoute) {
   }
-
-  // ngOnInit(){
-  //   this.ShowByGenre()
-  // }
-  // public ShowByGenre(): void { 
-  //   this.route.params.subscribe(params => {
-  //     this.genre = params['genre'];
-  //   })
-  //   this.showsService.getShows().subscribe(shows => {
-  //     this.shows = <Shows[]>shows
-  //   })
-  // }
 
   ngOnInit(): void {
     this.route.params.pipe(switchMap((params: Params) => {
@@ -49,7 +38,7 @@ export class GenresComponent implements OnInit {
           genreShows.push(eachTvShow)
         }
       })
-    })
+    }, error => this.errGenreShows = error)
     return of(genreShows);
   }
 }

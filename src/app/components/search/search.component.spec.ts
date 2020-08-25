@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchComponent } from './search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { Component } from '@angular/core';
 import { ShowsService } from 'src/app/services/shows.service';
 
@@ -18,7 +18,11 @@ describe('SearchComponent', () => {
       declarations: [SearchComponent, DummyComponent],
       imports: [
         HttpClientModule,
-        RouterTestingModule
+        RouterTestingModule.withRoutes(
+          [
+            { path: 'show-details/:id', component: DummyComponent }
+          ]
+        )
       ],
       providers: [
         { provide: ShowsService, useValue: tvShowServiceMock }
@@ -48,6 +52,18 @@ describe('SearchComponent', () => {
     component.ngOnInit();
     expect(component.searchedShows.length).toBe(0);
   })
+
+  it('should return an error if getSearchByQuery() throws an error', () => {
+    let errorString = 'Error Occured while loadind Data'
+    tvShowServiceMock.getSearchByQuery.and.returnValue(throwError(errorString));
+    component.ngOnInit();
+    expect(component.errSearchResults).toBe(errorString);
+  });
+
+  afterAll(() => {
+    fixture.destroy();
+  });
+
 });
 @Component({
   template: ''

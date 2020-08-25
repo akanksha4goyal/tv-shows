@@ -12,8 +12,9 @@ export class DashboardComponent implements OnInit {
   public show: Shows[];
   public genres: any[];
   public display: boolean = false;
-  constructor(private router: Router, private showsService: ShowsService) {
-    this.genres = ['Comedy', 'Thriller', 'Action', 'Crime', 'Horror', 'Romance', 'Drama', 'Supernatural', 'Fantasy', 'Science-Fiction', 'Mystery', 'Adventure', 'Espionage']
+  public errAllShows: string;
+  constructor(private showsService: ShowsService) {
+    this.genres = ['Action', 'Adventure', 'Comedy', 'Crime', 'Drama', 'Espionage', 'Fantasy', 'Horror', 'Mystery', 'Romance', 'Science-Fiction', 'Supernatural', 'Thriller', 'War']
   }
 
   ngOnInit(): void {
@@ -24,6 +25,8 @@ export class DashboardComponent implements OnInit {
     this.showsService.getShows().subscribe(shows => {
       this.shows = <Shows[]>shows
       this.display = true;
+    }, error => {
+      this.errAllShows = error
     })
   }
 

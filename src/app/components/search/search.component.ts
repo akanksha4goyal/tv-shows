@@ -13,7 +13,8 @@ export class SearchComponent implements OnInit {
   public query: string
   public searchList: []
   public searchedShows: Shows[];
-  constructor(private router: Router, private showsService: ShowsService, private route: ActivatedRoute) { }
+  public errSearchResults: String;
+  constructor(private showsService: ShowsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.pipe(switchMap((params: Params) => {
@@ -26,6 +27,8 @@ export class SearchComponent implements OnInit {
           if (tvShow.show.name && tvShow.show.image && tvShow.show.image.medium)
             this.searchedShows.push(tvShow)
         })
+      }, error => {
+        this.errSearchResults = error
       })
   }
 }

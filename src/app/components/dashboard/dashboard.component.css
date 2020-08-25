@@ -1,5 +1,6 @@
 .card {
   transition: 0.3s;
+  display: block;
 }
 
 .card:hover {
@@ -7,12 +8,8 @@
 }
 
 img {
-    border-radius: 5px 5px 0 0;
-    padding:10px 10px;
-  }
-
-.card{
-  display: block;
+  border-radius: 5px 5px 0 0;
+  padding:10px 10px;
 }
 
 .scrolling-wrapper{
@@ -31,7 +28,6 @@ img {
   margin-bottom: 10px;
 }
 
-
 .container{
   margin-top: 20px;
 }
@@ -42,4 +38,9 @@ img {
 
 h4{
   color: aliceblue;
+}
+
+h1{
+  color: aliceblue;
+  text-align: center;
 }

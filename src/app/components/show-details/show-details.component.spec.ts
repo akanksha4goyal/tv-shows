@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShowDetailsComponent } from './show-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { Component } from '@angular/core';
 import { ShowsService } from 'src/app/services/shows.service';
 import { Location } from '@angular/common';
@@ -54,6 +54,32 @@ describe('ShowDetailsComponent', () => {
     expect(component.goBack).toBeDefined();
     expect(component.location.back).toHaveBeenCalled();
   })
+
+  it('should return an error if getShowById() throws an error', () => {
+    let errorString = 'Error Occured while loadind Data'
+    tvShowServiceMock.getShowById.and.returnValue(throwError(errorString));
+    component.ShowById();
+    expect(component.errShowById).toBe(errorString);
+  });
+
+  it('should return an error if getCast() throws an error', () => {
+    let errorString = 'Error Occured while loadind Data'
+    tvShowServiceMock.getCast.and.returnValue(throwError(errorString));
+    component.ShowById();
+    expect(component.errCast).toBe(errorString);
+  });
+
+  it('should return an error if getSeasons() throws an error', () => {
+    let errorString = 'Error Occured while loadind Data'
+    tvShowServiceMock.getSeasons.and.returnValue(throwError(errorString));
+    component.ShowById();
+    expect(component.errSeasons).toBe(errorString);
+  });
+
+  afterAll(() => {
+    fixture.destroy();
+  });
+
 });
 
 @Component({

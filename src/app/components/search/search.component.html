@@ -35,3 +35,6 @@
     </div>
     <h4 *ngIf="searchedShows?.length===0">Sorry, No results Founds for "{{query}}"</h4>
 </div>
+<div *ngIf="errSearchResults">
+    <h1>Error Occured while loading data</h1>
+</div>

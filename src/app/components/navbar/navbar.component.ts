@@ -9,7 +9,7 @@ export class NavbarComponent implements OnInit {
   public genres: any[];
   public query: ''
   constructor() {
-    this.genres = ['Comedy', 'Thriller', 'Action', 'Crime', 'Horror', 'Romance', 'Drama', 'Supernatural', 'Fantasy', 'Science-Fiction', 'Mystery', 'Adventure', 'Espionage']
+    this.genres = ['Action', 'Adventure', 'Comedy', 'Crime', 'Drama', 'Espionage', 'Fantasy', 'Horror', 'Mystery', 'Romance', 'Science-Fiction', 'Supernatural', 'Thriller', 'War']
   }
 
   ngOnInit(): void { }
